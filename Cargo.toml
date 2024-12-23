@@ -1,0 +1,13 @@
+[package]
+name = "BitMapImage"
+version = "0.1.0"
+edition = "2021"
+
+[lints.rust]
+unused = "allow"
+dead_code = "allow"
+unused_must_use = "allow"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
