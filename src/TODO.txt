@@ -1,2 +1,0 @@
-[X]. Implement the mandelbrot set function for color intensity.
-[]. Extract the bitmap image stuff for a separate project.
