@@ -131,7 +131,9 @@ fn fractal(image: &mut BmpImage, width: u32, height: u32)
             let mut i = 0;
             while (i < iteration_limit) && z.norm() <= 2.0//1.616
             {
-                z = (z * z) + c;
+                //z = (z * z * c) + c;
+                //z = (z * c) + (z / c);
+                z = (z * c * c) + z;
                 //let deno: Point = (z - (z * z) / Point::new(2.0, 0.0));
 
                 //z = ((Point::new(1.0, 0.0) - (z * z * z) / Point::new(6.0, 0.0)) / (deno * deno)) + Point::new(2.0, 0.0);
@@ -141,7 +143,7 @@ fn fractal(image: &mut BmpImage, width: u32, height: u32)
             }
             //println!("{}", i);
             //let mut color =  (((i as f32 / (iteration_limit as f32)) * 0xffffff as f32) as u32);//((i as u32) << 16 | ((i as u32 & 0xff)));
-            let mut color = (i as u32) << 16 | (i as u32) << 8 ;//| i as u32;
+            let mut color = (i as u32) << 16 | (i as u32) << 24 | i as u32;
     
             if (i == iteration_limit)
             {
@@ -181,7 +183,7 @@ fn main() {//-> std::io::Result<()> {
     let data: Vec<u32> = vec![color; size as usize];
     //intensity(&mut data, width as usize, height as usize, size as usize, color);
     println!("{}", data.len());
-    let mut image = BmpImage::create_bitmap_image("fractal2.bmp", width, height, data);
+    let mut image = BmpImage::create_bitmap_image("fractal3.bmp", width, height, data);
     //intensity(&mut image, width, height, size as usize, color);
     fractal(&mut image, width, height);
     image.to_file();
